@@ -1,0 +1,168 @@
+% Must come in the beginning. Changes the spacing in the table of contents to look more pleasing
+\usepackage{tocloft}
+\setlength{\cftbeforepartskip}{5.0mm}
+\setlength{\cftbeforechapskip}{2.0mm}
+\setlength{\cftbeforesecskip}{0.0mm}
+
+\usepackage{graphicx} % For \includegraphics
+\usepackage{amsfonts,amsmath,amssymb} % Math symbols   
+\usepackage{pdfpages} % To include the PDFs of the papers
+\usepackage{titlesec}
+\usepackage{emptypage}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cite}
+% Nice looking tables with correct spacings 
+\usepackage{booktabs}
+% Tables spanning more than one page
+\usepackage{longtable}
+% For tables spanning the full text width
+\usepackage{tabularx}
+
+% For a nomenclature section
+\usepackage{nomencl}
+
+\usepackage{type1cm}
+\usepackage{lettrine}
+
+% Hyphenation, support for different languages, last one is default
+% Make sure to install the hyphenation packages for all languages you need
+\usepackage[swedish,british]{babel} 
+
+\usepackage{pgfplots} 
+\pgfplotsset{compat=1.8} 
+%\usepgfplotslibrary{external} % Generare figurerna som pdf-er också
+\usetikzlibrary{intersections}
+\pgfplotsset{every tick/.style={black,}} % Gör alla små ``ticks`` svarta
+
+% These are colors used by the LU
+\definecolor{bronze}{rgb}{0.6117647059,0.3803921569,0.0784313725}
+\definecolor{LUblue}{rgb}{0,0,0.5019607843}
+\definecolor{LUpink}{rgb}{0.9137254902,0.768627451,0.7803921569}
+\definecolor{LUcyan}{rgb}{0.7254901961,0.8274509804,0.862745098}
+\definecolor{LUgreen}{rgb}{0.6784313725,0.7921568627,0.7215686275}
+\definecolor{LUtan}{rgb}{0.8392156863,0.8235294118,0.768627451}
+\definecolor{LUgrey}{rgb}{0.74190196078,0.7215686275,0.6862745098}
+\definecolor{LUlightblack}{rgb}{0.3019607843,0.2980392157,0.2666666667}
+ 
+
+% This probably did something really clever 
+% -------------------------------------------------------------------
+\makeatletter
+\renewcommand\part{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+  \thispagestyle{empty}%   % Original »plain« replaced by »emptyx
+  \if@twocolumn
+    \onecolumn
+    \@tempswatrue
+  \else
+    \@tempswafalse
+  \fi
+  \null\vfil
+  \secdef\@part\@spart}
+\makeatother
+% --------------------------------------------------------------------
+ 
+%
+ 
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage[garamondx]{newtxmath}
+  % If you think the integral sign is hideous in newtxmath, then use the following line instead
+  %\usepackage[garamondx,cmintegrals]{newtxmath}
+  \usepackage{bm}
+  \usepackage[no-math]{fontspec}  
+  \setromanfont[Ligatures=TeX]{Adobe Garamond Pro}
+  \setsansfont{FrutigerLTStd-Bold}
+  \usepackage{mathspec}
+  \setmathfont(Digits){Adobe Garamond Pro}
+\else
+  \usepackage{bm}
+\fi
+\usepackage{fonttable}
+
+
+% Additional font sizes \HUGE and \ssmall
+\usepackage{moresize}
+
+% Figure caption labels in bold (i.e. "Figure 1" in bold), hanging label
+\usepackage{subfig}
+\captionsetup{margin=0em,font={normal,rm},labelfont={bf},format=hang} 
+
+% Figures centred, captions on top for tables
+\usepackage{floatrow}
+\floatsetup[table]{position=top}
+
+\titleformat{\part}[display]
+{\bfseries\HUGE\filcenter} % changes size and fonttype
+{Part \thepart}{.5em}{\bfseries}
+ 
+\renewcommand{\chaptername}{} % removes the word 'Chapter' in the titles
+ 
+ 
+
+\titleformat{\chapter}[block] % change definition for chapter
+{\bfseries\Huge\rmfamily}    % changes size and fonttype
+{\thechapter}{.5em}{\bfseries}
+
+\titleformat{\section}[block] %change definition for section
+{\bfseries\Large\sffamily\MakeUppercase}    % changes size and fonttype
+{\thesection}{.5em}{\bfseries\MakeUppercase}
+
+\titleformat{\subsection}[block] % change definition for subsection
+{\bfseries\large\sffamily}       % changes size and fonttype
+{\thesubsection}{.5em}{\bfseries}
+ 
+\titleformat{\subsubsection}[block]  % change definition for subsection
+{\bfseries\sffamily}                 % changes size and fonttype
+{\thesubsubsection}{.5em}{\bfseries}
+ 
+
+
+\renewcommand{\bibname}{References}
+
+\renewcommand\floatpagefraction{0.8}
+\renewcommand\topfraction{0.8}
+\renewcommand\bottomfraction{0.8}
+\renewcommand\textfraction{0.1}
+
+
+% Non-indented paragraphs with a small vertical space in-between
+\parindent 0in
+\parskip 3mm
+
+% not every page needs to go to the same bottom line. Allows nicer page breaks.
+\raggedbottom
+
+\usepackage[paperwidth=178mm, paperheight=252mm, top=2.4cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{ \markboth{\thechapter\ #1}{} }
+\renewcommand{\sectionmark}[1]{ \markright{\thesection\ #1}{} }
+
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{ \nouppercase{\leftmark}} }
+\fancyhead[LO]{\textit{ \nouppercase{\rightmark}} }
+
+
+
+% avoid orphan/widow lines. Lower this number if necessary to get a good layout. 
+\widowpenalty=1000
+\clubpenalty=1000
+\usepackage{siunitx}
+
+% Remove page numbers on ''chapter`` pages
+\makeatletter
+\renewcommand\ps@plain{\let\@mkboth\@gobbletwo
+     \let\@oddhead\@empty
+     \def\@oddfoot{\reset@font\hfil}
+     \let\@evenhead\@empty\let\@evenfoot\@oddfoot}
+\makeatother
+

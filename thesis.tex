@@ -1,0 +1,223 @@
+\documentclass[twoside,openright,11pt]{book}
+
+
+\input{preamble.tex}
+
+% During development phase, print on an A4 paper with a border indicating the paper format.
+% Comment this line before sending the thesis for printing!
+\usepackage[a4,frame,center]{crop}
+
+% If you want the caption label on figures to say ``Fig. 1:'' instead of ``Figure 1:'',
+% uncomment the following line:
+%\renewcommand{\figurename}{Fig.}
+% The follwing line changes the same thing for tables
+%\renewcommand{\tablename}{Tab.}
+
+%%%%%%%%%%%%%%%%%%%%% Juan's suggestion of chapter heading format 
+%\newcommand{\chapnumfont}{              % define font for chapter number
+%  \fontsize{80}{100}                                         % font size 100pt, baselineskip 100pt
+%  \selectfont                                                       % activate font
+%}
+%\colorlet{chapnumcol}{LUlightblack}                % color for chapter number
+%\titleformat{\chapter}[display]
+%{\filleft\bfseries\Huge} 
+%{\filleft\chapnumfont\textcolor{chapnumcol}{\thechapter}}
+%{-24pt}
+%{\Huge}
+%%%%%%%%%%%%%%%%%%%%%
+
+% Need to add hyphenation corrections? Do like this:
+% \hyphenation{as-tro-me-try ana-lysis}
+
+%----------------------------------------------------------------------------------------
+%	BEGINNING OF THE DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+\selectlanguage{british}
+
+
+%\pagestyle{empty} 
+\frontmatter
+
+\begin{titlepage}
+  \center
+  \null
+  \vspace{6cm}
+  
+  {\Huge Thesis title}
+
+  \vspace{2cm}
+  
+  \Large{Author Name \\ Division of Structural Mechanics \\ Department of Construction Sciences \\ Lund University \\ Sweden}
+  \vspace{1cm}
+  
+  \includegraphics[scale=0.3]{LundUniversity_C2line_BLACK.eps}
+\end{titlepage} 
+
+
+\pagestyle{plain}
+
+ 
+\newpage
+
+ 
+\clearpage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+\cleardoublepage
+\include{acknowledgments}
+\cleardoublepage % Start a new page 
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+\include{abstract}
+\cleardoublepage % Start a new page
+
+%----------------------------------------------------------------------------------------
+%	SAMMANFATTNING PAGE
+%----------------------------------------------------------------------------------------
+% Set the language to swedish for hyphenation purposes. 
+\selectlanguage{swedish}
+\include{sammanfattning}
+\cleardoublepage % Start a new page
+\selectlanguage{british}
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS AND APPENDED PAPERS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents
+
+%\thispagestyle{empty}
+ 
+\noindent 
+\textbf{Paper A} \\
+\textsl{Paper title.} \\
+Author one, Author two and Author three.\\
+Accepted for publication in Nature (in press, available online). \\ \\
+\textbf{Paper B} \\
+\textsl{Paper title.} \\
+Author one, Author two and Author three.\\
+Accepted for publication in Science (in press, available online). \\ \\
+\textbf{Paper C} \\
+\textsl{Paper title.} \\
+Author one, Author two and Author three.\\
+Accepted for publication in Nature (in press, available online). \\ \\
+
+\textbf{Paper D} \\
+\textsl{Paper title.} \\
+Author one, Author two and Author three.\\
+Submitted for publication. \\ \\
+\textbf{Paper E} \\
+\textsl{Paper title.} \\
+Author one, Author two and Author three.\\
+Submitted for publication. \\ \\
+~\vspace{-5pt} \\
+~\vspace{-5pt} \\
+
+%\mainmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Introduction and overview}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+%\pagestyle{plain}
+\pagestyle{fancy}
+% If you would like to use an initial (anfang på svenska) at the start of each chapter, there is an example of how to do this available in chapter1initial.
+\include{chapter1} 
+%\include{chapter1initial} 
+\include{chapter2}
+\include{chapter3}
+
+\renewcommand{\bibname}{References}
+\backmatter
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{mystyle}
+\bibliography{thesisbibfile}
+
+\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Appended publications}
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{2cm} %increase by 2cm each time. % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Important
+\begin{minipage}{8cm}
+% Optional text, 1 line max, can also be left empty
+Optional text here.
+\end{minipage}%
+\hfill{ 
+\fontsize{20}{30}\selectfont {\bf Paper~A}}\marginpar{\rule[-4mm]{50mm}{14mm}} % Change the Roman number here
+\vfill
+
+%Second: The PDF itself
+\cleardoublepage
+% Include the PDF. Comment this while writing the thesis, only add later. 
+% Options are: all pages, scaled to full width (use 0.95 if that is too high for some reason)
+\includepdf[pages=-,width=1.00\textwidth,pagecommand={\thispagestyle{empty}}]{PaperA.pdf}
+% One additional option could be useful: To cut away the margins of the included PDFs use:
+% clip,viewport=<left> <bottom> <right> <top>
+% To determine the four numbers you can use the ./determineViewport.sh script in the thesis directory. 
+% You can also insert the pdf manually. Just comment the line above and insert it aftewards using pdftk or a similar tool.
+
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{4cm} %increase by 2cm each time. % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Important
+\begin{minipage}{8cm}
+Optional text here.
+\end{minipage}%
+\hfill{ 
+\fontsize{20}{30}\selectfont {\bf Paper~B}}\marginpar{\rule[-4mm]{50mm}{14mm}} % Change the Roman number here
+\vfill
+
+\cleardoublepage % When using clip, it appears that you need an extra \cleardoublepage
+\includepdf[pages=-,width=1.00\textwidth,pagecommand={\thispagestyle{empty}},viewport=72 71 541 681]{PaperA.pdf}
+
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{6cm} %increase by 2cm each time. % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Important
+\begin{minipage}{8cm}
+Optional text here.
+\end{minipage}%
+\hfill{ 
+\fontsize{20}{30}\selectfont {\bf Paper~C}}\marginpar{\rule[-4mm]{50mm}{14mm}} % Change the Roman number here
+\vfill
+
+%\cleardoublepage
+%\includepdf[pages=-,width=1.00\textwidth,pagecommand={\thispagestyle{plain}}]{PaperA.pdf}
+
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{8cm} %increase by 2cm each time. % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Important
+\begin{minipage}{8cm}
+Optional text here.
+\end{minipage}%
+\hfill{ 
+\fontsize{20}{30}\selectfont {\bf Paper~D}}\marginpar{\rule[-4mm]{50mm}{14mm}} % Change the Roman number here
+\vfill
+
+%\cleardoublepage
+%\includepdf[pages=-,width=1.00\textwidth,pagecommand={\thispagestyle{plain}}]{PaperA.pdf}
+
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{10cm} %increase by 2cm each time. % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Important
+\begin{minipage}{8cm}
+Optional text here.
+\end{minipage}%
+\hfill{ 
+\fontsize{20}{30}\selectfont {\bf Paper~E}}\marginpar{\rule[-4mm]{50mm}{14mm}} % Change the Roman number here
+\vfill
+
+%\cleardoublepage
+%\includepdf[pages=-,width=1.00\textwidth,pagecommand={\thispagestyle{plain}}]{PaperA.pdf}
+
+
+% Repeat for all papers ...
+
+\end{document}

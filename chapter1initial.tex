@@ -1,0 +1,284 @@
+\chapter{Chapter title}
+\lettrine[lines=3,slope=0pt,findent=-3pt]{L}{orem} ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+\section{Section title}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Some equations, some numbered and some unnumbered:
+\begin{equation}\label{eq:first}
+\mathbf{\tilde{M}\ddot{q}}(t) + \mathbf{\tilde{C}\dot{q}}(t) + \mathbf{\tilde{K}q}(t) = \mathbf{\tilde{p}}(t) \text{,}
+\end{equation}
+\begin{equation}\label{eq:second}
+\mathbf{\tilde{M}} = \bm{\Phi}^T\mathbf{M}\bm{\Phi}, \quad
+  \mathbf{\tilde{C}} = \bm{\Phi}^T\mathbf{C}\bm{\Phi}, \quad
+  \mathbf{\tilde{K}} = \bm{\Phi}^T\mathbf{K}\bm{\Phi}, \quad
+  \mathbf{\tilde{p}}(t) = \bm{\Phi}^T\mathbf{p}(t).
+\end{equation} 
+
+They can be reffered to as (\ref{eq:first}) and (\ref{eq:second}). If you don't want them numbered you can either do:
+\begin{equation*}
+  \mathbf{a}(t) = \bm{\Phi}\mathbf{q}(t) \text{,} \quad
+  \bm{\Phi} = \left[ \bm{\phi}_1 \dotsb \bm{\phi}_n  \right] \text{,} \quad
+  \mathbf{q}(t) =  \left[ q_1(t) \dotsb q_n(t)  \right]^{T} \! \text{,}
+\end{equation*}
+or:
+\[  \underbrace{\frac{\partial}{\partial t} \int_V \rho \phi \text{d}V}_\text{Time derivative} + \underbrace{\int_V \nabla \cdot (\rho \mathbf{u} \phi) \text{d}V}_\text{Convection} - \underbrace{\int_V \nabla \cdot (\rho \Gamma \nabla \phi) \text{d}V}_\text{Diffusion} = 0 \text{,}
+\]
+Note that bold-face versions of lowercase greek characters are available using \texttt{bm} instead of \texttt{mathbf}.
+
+Citations are made as usual. The following cited works gives a few examples of different kind of references: The CALFEM book~\cite{CALFEM} a journal article~\cite{JournalArticle}, a conference paper~\cite{Conference} and a~\cite{Thesis}. You can also merge them all into one bracket \cite{CALFEM,JournalArticle,Conference,Thesis}. 
+
+
+\subsection{Subsection title}
+You can include graphics, like in Figure~\ref{fig:logo} :
+\begin{figure}
+  \includegraphics[scale=0.3]{LundUniversity_C2line_BLACK.eps}
+  \caption{Figure caption.}
+  \label{fig:logo}
+\end{figure}
+
+You can also use Tikz/PGF to create graphics, se Figure~\ref{fig:tikz} and Figure~\ref{fig:Hamming}. There are a bunch of predefined colours in the document that correspond to the LU profile colours. They can be useful for making figures in the correct colours. These are: 
+\texttt{bronze}:~{\color{bronze} \rule{20pt}{8pt}},
+\texttt{LUblue}:~{\color{LUblue} \rule{20pt}{8pt}}, 
+\texttt{LUpink}:~{\color{LUpink} \rule{20pt}{8pt}}, 
+\texttt{LUcyan}:~{\color{LUcyan} \rule{20pt}{8pt}}, 
+\texttt{LUgreen}:~{\color{LUgreen} \rule{20pt}{8pt}}, 
+\texttt{LUtan}:~{\color{LUtan} \rule{20pt}{8pt}}, 
+\texttt{LUgrey}:~{\color{LUgrey} \rule{20pt}{8pt}}, 
+\texttt{LUlightblack}:~{\color{LUlightblack} \rule{20pt}{8pt}}, 
+
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=0.9,>=stealth]
+    \draw[<->] (12.1,1.4) -- node[fill=white] {$\delta$} (12.1,0);
+    \fill[LUcyan] (12,1.4) parabola (5,0.7) parabola (0,0) -- (12,0) -- cycle;
+    \fill[bronze] (0,0) -- (12,0) -- (12,-0.2) -- (2,-0.2) -- cycle;
+    \draw (6,-0.2) node[below] {Wall};
+    \path [name path=streamline] (12,1.4) parabola (5,0.7) parabola (0,0);
+    \path [name path=laminar] (4,0) -- (4,3);
+    \path [name path=laminar2, name intersections={of=streamline and laminar, by= x}] (3,0) .. controls (4,0) and (x) .. (x) -- (4,2);
+    \draw [name intersections={of=streamline and laminar, by=y}] (3,0) .. controls (4,0) and (x) .. (x) -- (4,2);
+    \draw (3,0) -- (3,2);
+    \path [name path=laminarArrow2] (3,0.5) -- (4,0.5);
+    \draw[->] [name intersections={of=laminarArrow2 and laminar2, by=x}] (3,0.5) -- (x);
+    \path [name path=laminarArrow1] (3,0.25) -- (4,0.25);
+    \draw[->] [name intersections={of=laminarArrow1 and laminar2, by=x}] (3,0.25) -- (x);
+    \draw[->] (3,0.75) -- (4,0.75);
+    \draw[->] (3,1) -- (4,1);
+    \draw[->] (3,1.25) -- (4,1.25);
+    \draw[->] (3,1.5) -- (4,1.5);
+    \draw[->] (3,1.75) -- (4,1.75);
+    \draw[->] (3,2) -- (4,2);
+    
+    \path [name path=turb] (9,0) -- (9,3);
+    \path [name path=turb2, name intersections={of=streamline and turb, by= x}] (8,0) .. controls (9,0) and (x) .. (x) -- (9,2);
+    \draw [name intersections={of=streamline and turb, by=y}] (8,0) .. controls (9,0) and (x) .. (x) -- (9,2);
+    \draw (8,0) -- (8,2);
+    \path [name path=turbArrow2] (8,0.5) -- (9,0.5);
+    \draw[->] [name intersections={of=turbArrow2 and turb2, by=x}] (8,0.5) -- (x);
+    \path [name path=turbArrow1] (8,0.25) -- (9,0.25);
+    \draw[->] [name intersections={of=turbArrow1 and turb2, by=x}] (8,0.25) -- (x);
+    \path [name path=turbArrow3] (8,0.75) -- (9,0.75);
+    \draw[->] [name intersections={of=turbArrow3 and turb2, by=x}] (8,0.75) -- (x);
+    \path [name path=turbArrow1] (8,1) -- (9,1);
+    \draw[->] [name intersections={of=turbArrow1 and turb2, by=x}] (8,1) -- (x);
+    \draw[->] (8,1.25) -- (9,1.25);
+    \draw[->] (8,1.5) -- (9,1.5);
+    \draw[->] (8,1.75) -- (9,1.75);
+    \draw[->] (8,2) -- (9,2);
+    
+    \draw (-2,0) -- (-2,2);
+    \draw (-1,0) -- (-1,2);
+    \draw[->] (-2,0) -- (-1,0);
+    \draw[->] (-2,0.25) -- (-1,0.25);
+    \draw[->] (-2,0.5) -- (-1,0.5);
+    \draw[->] (-2,0.75) -- (-1,0.75);
+    \draw[->] (-2,1) -- (-1,1);
+    \draw[->] (-2,1.25) -- (-1,1.25);
+    \draw[->] (-2,1.5) -- (-1,1.5);   
+    \draw[->] (-2,1.75) -- (-1,1.75);
+    \draw[->] (-2,2) -- (-1,2);
+    
+    \draw (-1.5,2.5) node {Free flow};
+    \draw (3,2.5) node {Laminar boundary layer};
+    \draw (8.5,2.5) node {Turbulent boundary layer};
+    \draw (-1,1) node[right] {$U$};
+    \draw (4,1.5) node[right] {$U$};
+    \draw (9,1.7) node[right] {$U$};
+    \draw (4,0.3) node[right] {$u(y) < U$};
+    \draw (9,0.6) node[right] {$u(y) < U$};
+    
+    \draw[->] (0,0) -- (0.5,0) node[above] {$x$};
+    \draw[->] (0,0) -- (0,0.5) node[above] {$y$};
+    
+    \draw (12,1.4) -- (12.2,1.4);
+    \draw (12,0) --(12.2,0);
+    
+  \end{tikzpicture}
+  \caption{Boundary layer over a flat plate. $U$ is the outer velocity and $u(y)$ is velocity in the boundary layer.}
+  \label{fig:tikz}
+\end{figure}
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+  \begin{axis}[
+  width=0.49\textwidth,
+  ylabel={Amplitude}, xlabel={Samples},
+  legend pos=north west,
+  xtick={0,99},xticklabels={0,$N-1$},
+  xmin=0,xmax=99,ymin=0,ymax=1]
+  %xtick={0,99},xticklabels={0,N-1},
+  \addplot[color=blue,style=solid] coordinates {
+    ( 0,8.0000000e-02)
+    ( 1,8.0907705e-02)
+    ( 2,8.3627237e-02)
+    ( 3,8.8147865e-02)
+    ( 4,9.4451746e-02)
+    ( 5,1.0251400e-01)
+    ( 6,1.1230282e-01)
+    ( 7,1.2377956e-01)
+    ( 8,1.3689893e-01)
+    ( 9,1.5160915e-01)
+    (10,1.6785218e-01)
+    (11,1.8556391e-01)
+    (12,2.0467443e-01)
+    (13,2.2510833e-01)
+    (14,2.4678496e-01)
+    (15,2.6961878e-01)
+    (16,2.9351967e-01)
+    (17,3.1839331e-01)
+    (18,3.4414153e-01)
+    (19,3.7066271e-01)
+    (20,3.9785218e-01)
+    (21,4.2560265e-01)
+    (22,4.5380460e-01)
+    (23,4.8234671e-01)
+    (24,5.1111636e-01)
+    (25,5.4000000e-01)
+    (26,5.6888364e-01)
+    (27,5.9765329e-01)
+    (28,6.2619540e-01)
+    (29,6.5439735e-01)
+    (30,6.8214782e-01)
+    (31,7.0933729e-01)
+    (32,7.3585847e-01)
+    (33,7.6160669e-01)
+    (34,7.8648033e-01)
+    (35,8.1038122e-01)
+    (36,8.3321504e-01)
+    (37,8.5489167e-01)
+    (38,8.7532557e-01)
+    (39,8.9443609e-01)
+    (40,9.1214782e-01)
+    (41,9.2839085e-01)
+    (42,9.4310107e-01)
+    (43,9.5622044e-01)
+    (44,9.6769718e-01)
+    (45,9.7748600e-01)
+    (46,9.8554825e-01)
+    (47,9.9185214e-01)
+    (48,9.9637276e-01)
+    (49,9.9909230e-01)
+    (50,1.0000000e+00)
+    (51,9.9909230e-01)
+    (52,9.9637276e-01)
+    (53,9.9185214e-01)
+    (54,9.8554825e-01)
+    (55,9.7748600e-01)
+    (56,9.6769718e-01)
+    (57,9.5622044e-01)
+    (58,9.4310107e-01)
+    (59,9.2839085e-01)
+    (60,9.1214782e-01)
+    (61,8.9443609e-01)
+    (62,8.7532557e-01)
+    (63,8.5489167e-01)
+    (64,8.3321504e-01)
+    (65,8.1038122e-01)
+    (66,7.8648033e-01)
+    (67,7.6160669e-01)
+    (68,7.3585847e-01)
+    (69,7.0933729e-01)
+    (70,6.8214782e-01)
+    (71,6.5439735e-01)
+    (72,6.2619540e-01)
+    (73,5.9765329e-01)
+    (74,5.6888364e-01)
+    (75,5.4000000e-01)
+    (76,5.1111636e-01)
+    (77,4.8234671e-01)
+    (78,4.5380460e-01)
+    (79,4.2560265e-01)
+    (80,3.9785218e-01)
+    (81,3.7066271e-01)
+    (82,3.4414153e-01)
+    (83,3.1839331e-01)
+    (84,2.9351967e-01)
+    (85,2.6961878e-01)
+    (86,2.4678496e-01)
+    (87,2.2510833e-01)
+    (88,2.0467443e-01)
+    (89,1.8556391e-01)
+    (90,1.6785218e-01)
+    (91,1.5160915e-01)
+    (92,1.3689893e-01)
+    (93,1.2377956e-01)
+    (94,1.1230282e-01)
+    (95,1.0251400e-01)
+    (96,9.4451746e-02)
+    (97,8.8147865e-02)
+    (98,8.3627237e-02)
+    (99,8.0907705e-02)
+  };
+  \end{axis}
+  \end{tikzpicture}
+\caption{Hamming window for $N$ samples.}
+\label{fig:Hamming}
+\end{figure}
+
+\begin{table}
+\caption{Lets also have a table}
+\centering
+\begin{tabular}{lcccc}
+\toprule
+& Superman & Spiderman\\
+\midrule
+Gender & male & male\\
+Species 	& Homo Sapien 	& Human/spider\\
+Homeworld 	& Gotham City 	& Earth\\
+\midrule
+Publisher 	& DC Comics 	& Marvel Comics\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Subsection title}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Subsubsection title}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Subsubsection title}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+\section{Section title}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+\subsection{Subsection title}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
